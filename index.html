@@ -31,16 +31,16 @@
 <body>
   <div class="gallery-container" id="gallery"></div>
   <script>
-    UPLOADCARE_PUBLIC_KEY = '0442e9f0cc48afaf650b'; // Replace with your public key
+    UPLOADCARE_PUBLIC_KEY = '0442e9f0cc48afaf650b'; 
 
     const galleryContainer = document.getElementById('gallery');
     
-    // Function to fetch and display images from Uploadcare
+   
     async function loadGallery() {
       try {
         const response = await fetch('https://api.uploadcare.com/files/', {
           headers: {
-            'Authorization': 'Uploadcare.Simple 0442e9f0cc48afaf650b:05aad1c3dd1d146a631e' // Replace with your keys
+            'Authorization': 'Uploadcare.Simple 0442e9f0cc48afaf650b:05aad1c3dd1d146a631e' 
           }
         });
         const data = await response.json();
@@ -48,6 +48,12 @@
         data.results.forEach(file => {
           const imgElement = document.createElement('img');
           imgElement.src = file.original_file_url;
+          
+          const linkElement = document.createElement('a');
+          linkElement.href = file.original_file_url;
+          linkElement.target = '_blank';
+          linkElement.appendChild(imgElement);
+          
           const galleryItem = document.createElement('div');
           galleryItem.classList.add('gallery-item');
           galleryItem.appendChild(imgElement);
